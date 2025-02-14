@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 // 비슷한 역할을 하는, 목적을 가진 메소드들을 한 클래스에 묶어놓음
 // 즉 RequestMapping에 공통 요소가 많이 생길 수 있음
 @RequestMapping("/lifecycle/ex01")
+//공통 요소들을 묶어 놓고 다른 점만 메소드에 개별적으로 부여
 
 @RestController 
 // @Controller + @ResponseBody
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class Ex01RestController {
 
 	// 직접 만든클래스의 객체를 response에 담는다
-	@RequestMapping("/lifecycle/ex01/3")
+	@RequestMapping("/3")
 	public Person objectResponse(){
 		
 		Person me = new Person("권유석", 26);
@@ -28,7 +29,7 @@ public class Ex01RestController {
 
 	// status code 직접 설정
 	// status code : 404NOT FOUND 처럼 요청 응답처리 결과를 코드로 알려주는 것
-	@RequestMapping("/lifecycle/ex01/4")
+	@RequestMapping("/4")
 	public ResponseEntity<Person> entityResponse(){
 		Person me = new Person("권유석", 26);
 		
