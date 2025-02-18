@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>사용자 정보</title>
+</head>
+<body>
+
+	<h2>사용자 정보</h2>
+	
+	<table border="1">
+		<tr>
+			<th>id</th>
+			<td th:text="${userrrr.id}">65</td>
+		</tr>
+		<tr>
+			<th>이름</th>
+			<td th:text="${userrrr.name}">김땡땡</td>
+		</tr>
+		<tr>
+			<th>생년월일</th>
+			<td th:text="${userrrr.yyyymmdd}">343434</td>
+		</tr>
+		<tr>
+			<th>이메일</th>
+			<td th:text="${userrrr.email}">kkk@kkk</td>
+		</tr>
+		<tr>
+			<th>자기소개</th>
+			<td th:text="${userrrr.introduce}">ㅇㅇㅇㅇㅇ</td>
+		</tr>
+	</table>
+</body>
+</html>
