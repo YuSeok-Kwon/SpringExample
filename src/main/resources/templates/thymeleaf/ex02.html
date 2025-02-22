@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Thymeleaf 반복문</title>
+</head>
+<body>
+	
+	<h1>반복문</h1>
+	
+	<h3>1. 숫자반복</h3>
+	<div th:each="i:${#numbers.sequence(0, 4)}" th:text="${i}">반복</div>
+	
+	<h3>2. 문자열 리스트</h3>
+<!-- 	for(String str:frutsList){
+		str
+	} -->
+	<div th:each="fruit, status:${fruitsList}">
+		<span th:text="${fruit}"></span>
+		<span th:text="|${status.index} ${status.count}|"></span>
+	</div>
+	
+	<h3>3. 맵 리스트</h3>
+	<table border=1>
+		<thead>
+			<tr>
+				<th>이름</th>
+				<th>나이</th>
+				<th>취미</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user:${userList}">
+				<td th:text="${user.name}">무무</td>
+				<td th:text="${user.age}">1</td>
+				<td th:text="${user.hobby}">밥 먹기</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
