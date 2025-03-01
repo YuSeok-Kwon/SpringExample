@@ -29,6 +29,15 @@ public class UserService {
 		User user = userRepository.selectUser();
 		
 		return user;
+	}
 	
+	// email을 전달 받고, 중복 여부를 확인하는 기능
+	public boolean isDuplicateEmail(String email) {
+		int count = userRepository.selectCountByEmail(email);
+		if(count == 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }

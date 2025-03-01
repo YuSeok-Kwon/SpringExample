@@ -18,4 +18,7 @@ public interface UserRepository {
 			, @Param("introduce") String introduce);
 	
 	public User selectUser();
+	
+	//전달 받은 email과 일치하는 행의 개수 조회
+	public int selectCountByEmail(@Param("email") String email);
 }

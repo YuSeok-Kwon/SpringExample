@@ -9,13 +9,39 @@
 	<h1>정보 저장 결과 페이지</h1>
 	<label>이름 : <input type="text" id="nameInput"></label><br>
 	<label>생년월일 : <input type="text" id="birthdayInput" placeholder="ex)20020101"></label><br>
-	<label>이메일 : <input type="text" id="emailInput"></label><br>
+	<label>이메일 : <input type="text" id="emailInput"></label><button type="button" id="checkBtn">중복확인</button><br>
 	<textarea rows="10" cols="30" placeholder="자기소개" id="introduceInput"></textarea>
 	<button type="button" id="inputBtn">저장</button>
 	
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script>
 	$(function(){
+		
+		$("#checkBtn").on("click", function(){
+			let email = $("#emailInput").val()
+			
+			if(email == ""){
+				alert("이메일을 입력하세요");
+				return;
+			}
+			
+			$.ajax({
+				type:"get"
+				, url:"/ajax/user/duplicate-email"
+				, data:{"email":email}
+				, success:function(response){
+					if(response.isDuplicate){
+						alert("이미 존재하는 이메일 입니다.")
+					} else{
+						alert("사용 가능한 이메일 입니다.");
+					}
+				}
+				, error:function(){
+					alert("중복확인 에러!");
+				}
+			})
+		})
+		
 		$("#inputBtn").on("click", function(){
 			let name = $("#nameInput").val();
 			let birthday = $("#birthdayInput").val();
@@ -57,7 +83,7 @@
 					alert("사용자 추가 오류");
 				}
 			})
-		})	
+		})		
 	})
 	
 </script>
