@@ -1,11 +1,15 @@
 package com.kepg.spring.ex.jpa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kepg.spring.ex.jpa.repository.StudentRepository;
 import com.kepg.spring.ex.jpa.student.Student;
 import com.kepg.spring.ex.jpa.studentService.StudentService;
 
@@ -49,6 +53,42 @@ public class StudentController {
 		return "삭제 성공!";
 	}
 	
+	@Autowired
+	private StudentRepository repository;
+	// 절대 Controller에서 Repository를 직접 연결하면 안됌.
+	// 지금은 예제 진행을 위해서 연결하는 것임
+	
+	@ResponseBody
+	@GetMapping("/find")
+	public List<Student>findStudent() {
+		
+		List<Student> studentList = null;
+		
+		// 모든 행 조회
+//		studentList = repository.findAll();
+//		return studentList;
+		
+//		studentList = repository.findAllByOrderByIdDesc();
+		
+//		studentList = repository.findTop2ByOrderByIdDesc();
+		
+//		studentList = repository.findByName("권보보");
+		
+//		List<String> nameList = new ArrayList<>();
+//		nameList.add("권유석");
+//		nameList.add("유재석");
+//		studentList = repository.findByNameIn(nameList);
+		
+//		studentList = repository.findByEmailContaining("gmail");
+		
+//		studentList = repository.findByIdBetweenOrderByIdDesc(1, 3);
+		
+		studentList = repository.selectByDreamJob("백수");
+		
+		return studentList;
+		
+	
+	}
 	
 	@ResponseBody
 	@GetMapping("/jpa/lombok/1")
